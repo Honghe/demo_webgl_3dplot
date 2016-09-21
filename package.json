@@ -1,0 +1,16 @@
+{
+  "name": "demo_plotly",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "plotly.js": "^1.17.2",
+    "webpack": "^1.13.2"
+  }
+}

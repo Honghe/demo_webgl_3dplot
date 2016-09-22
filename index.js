@@ -2,10 +2,11 @@
  * Created by honhe on 9/20/16.
  */
 
-// 全部引入，模块化引入需要其它编译包支持
+// 全部引入，模块化引入需要其它编译包支持,参考 Plotly.js 官方文档
 var Plotly = require('plotly.js');
 var Stats = require('./lib/stats.min');
 
+// example 1
 TESTER = document.getElementById('tester');
 // Generating random data..
 a = [];
@@ -40,7 +41,6 @@ var data = [
 var stats = new Stats();
 stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
 document.body.appendChild(stats.dom);
-
 
 z1 = [
     [8.83, 8.89, 8.81, 8.87, 8.9, 8.87],
@@ -88,22 +88,17 @@ var data_z3 = {z: z3, opacity: 1, type: 'surface'};
 Plotly.plot('example', [data_z2, data_z3]);
 
 // 动态渲染数据
-function freshPlot() {
-    console.log('freshPlot', i);
-    for (var i = 0; i < z1.length; i++) {
-        for (var j = 0; j < z1[i].length; j++) {
-            z3[i][j] = z1[i][j] + getRandomArbitrary(-1, 1);
-        }
-    }
-    Plotly.redraw('example');
-    setTimeout(freshPlot, 1000)
-}
+// function freshPlot() {
+//     console.log('freshPlot', i);
+//     for (var i = 0; i < z1.length; i++) {
+//         for (var j = 0; j < z1[i].length; j++) {
+//             z3[i][j] = z1[i][j] + getRandomArbitrary(-1, 1);
+//         }
+//     }
+//     Plotly.redraw('example');
+//     setTimeout(freshPlot, 1000)
+// }
 // freshPlot();
-
-// 返回一个介于min和max之间的随机数
-function getRandomArbitrary(min, max) {
-    return Math.random() * (max - min) + min;
-}
 
 // 动画并统计FPS
 // 因用 requestAnimationFrame 统计 FPS，所以定时刷新的机制就不能用 setTimeout, 而是每次循环中判断。
@@ -135,4 +130,9 @@ function freshTimeout(intever) {
             lastTime = time;
         }
     };
+}
+
+// 返回一个介于min和max之间的随机数
+function getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
 }
